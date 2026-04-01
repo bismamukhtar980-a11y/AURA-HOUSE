@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA HOUSE</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff0f5;
+        }
+        header {
+            background-color: #E7ADA2
+;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #ffb6c1;
+            padding: 10px;
+        }
+        nav input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        section {
+            padding: 40px 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            width: 220px;
+            text-align: center;
+            padding: 15px;
+        }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .price {
+            margin: 10px 0;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: gray;
+            margin-right: 5px;
+        }
+        .discount-price {
+            color: #ff1493;
+            font-weight: bold;
+        }
+        .buttons button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .add-cart { background-color: #32cd32; color: white; }
+        .buy-now { background-color: #ff4500; color: white; }
+        /* Image Slider */
+        .slider {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        .slider-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slider-buttons button {
+            background-color: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        /* Responsive */
+        @media(max-width: 768px){
+            .products {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav input[type="text"] {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>AURA HOUSE</h1>
+    </header>
+
+    <!-- Navigation/Search Bar -->
+    <nav>
+        <input type="text" id="searchBar" placeholder="Search for products..." onkeyup="searchProducts()">
+    </nav>
+
+    <!-- Image Slider / Banner -->
+    <div class="slider">
+        <div class="slides" id="slides">
+            <img src="https://img.drz.lazcdn.com/g/kf/S26f11d58cabc41b6819ef6ebf11f92a40.jpg_400x400q75.avif">
+            <img src="https://img.drz.lazcdn.com/static/pk/p/a5777389e90ced6529c944a33e096eb4.jpg_400x400q75.avif">
+            <img src="https://img.drz.lazcdn.com/static/pk/p/63ccfb0787a1bb7346cec046cc3348d3.jpg_400x400q75.avif">
+       <img src="https://img.drz.lazcdn.com/g/kf/S26f11d58cabc41b6819ef6ebf11f92a40.jpg_400x400q75.avif">
+            <img src="https://img.drz.lazcdn.com/static/pk/p/a5777389e90ced6529c944a33e096eb4.jpg_400x400q75.avif">
+            <img src="https://img.drz.lazcdn.com/static/pk/p/63ccfb0787a1bb7346cec046cc3348d3.jpg_400x400q75.avif">
+ </div>
+        <div class="slider-buttons">
+            <button onclick="prevSlide()">&#10094;</button>
+            <button onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- Kids Clothes Section -->
+    <section id="kids-clothes">
+        <h2>Kids Clothes</h2>
+        <div class="products">
+            <!-- Example Product -->
+            <div class="product-card" id="kc1">
+                <img src="https://img.drz.lazcdn.com/g/kf/Se2e37a52368a413fbfb73cab2d92510d2.jpg_400x400q75.avif">
+                <h3>T-shirt And Shorts Pants For Kids Baby Girls Dresses Short Sleeves Tee Top's Clothes Set's Dresses Outfit Suit For Unisex </h3>
+                <p class="price"><span class="original-price">1100pkr</span><span class="discount-price">600pkr</span></p>
+                <label for="size-kc1">Size:</label>
+    <select id="size-kc1">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option>
+<option value="7-8Y">7 - 8 Years</option>
+<option value="8-9Y">8 - 9 Years</option>
+<option value="9-10Y">9 - 10 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" id="kc2">
+                <img src="https://img.drz.lazcdn.com/g/kf/S9dcbe574760541ea88b1110db373844aK.jpg_400x400q75.avif">
+                <h3>T-Shirt & Shorts</h3>
+                <p class="price"><span class="original-price">1200pkr</span><span class="discount-price">500pkr</span></p>
+                <label for="size-kc2">Size:</label>
+    <select id="size-kc2">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option>
+<option value="7-8Y">7 - 8 Years</option>
+<option value="8-9Y">8 - 9 Years</option>
+<option value="9-10Y">9 - 10 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+           <div class="product-card" id="kc3">
+                <img src="https://img.drz.lazcdn.com/g/kf/Sda53bc67fd824f0da7fd2e719451f847d.jpg_400x400q75.avif">
+                <h3>T-Shirt & Shorts for kids baby boys and girls</h3>
+                <p class="price"><span class="original-price">1200pkr</span><span class="discount-price">500pkr</span></p>
+                <label for="size-kc3">Size:</label>
+    <select id="size-kc3">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option>
+<option value="7-8Y">7 - 8 Years</option>
+<option value="8-9Y">8 - 9 Years</option>
+<option value="9-10Y">9 - 10 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            
+</div>
+           <div class="product-card" id="kc4">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/4c7f335fbcccad82178c30c66049009c.jpg_400x400q75.avif">
+                <h3>T-Shirt & Shorts Round Neck Short Sleeves Tee Top's Clothes Sets Dresses </h3>
+                <p class="price"><span class="original-price">1600pkr</span><span class="discount-price">650pkr</span></p>
+                     <label for="size-kc4">Size:</label>
+    <select id="size-kc4">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option>
+<option value="7-8Y">7 - 8 Years</option>
+<option value="8-9Y">8 - 9 Years</option>
+<option value="9-10Y">9 - 10 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div> 
+</div>
+           <div class="product-card" id="kc5">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/ddb85e57ff6c65e23b804169d0ccb562.jpg_400x400q75.avif">
+                <h3>Pack Of 3 - Cotton Printed Summer Baby Frocks - Multicolors</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">800pkr</span></p>
+                <label for="size-kc5">Size:</label>
+    <select id="size-kc5">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc6">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/a4e2a8920495ecf463d88332bef4ea5c.png_720x720q80.png_.webp">
+                <h3>Black Leaf Print Outfit with White Bloomers </h3>
+                <p class="price"><span class="original-price">1000pkr</span><span class="discount-price">600pkr</span></p>
+                <label for="size-kc6">Size:</label>
+    <select id="size-kc6">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc7">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/b1dbbd245ff744b2cf8bc03b19653780.jpg_400x400q75.avif">
+                <h3>Baby Girls 3-Piece Outfit Set | Ruffle Top, Mesh Tulle Skirt & Matching Headband | Cotton & Net Party Wear,</h3>
+                <p class="price"><span class="original-price">3000pkr</span><span class="discount-price">1700pkr</span></p>
+                 <label for="size-kc7">Size:</label>
+    <select id="size-kc7">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc8">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/b94670d69620a443afeb001f4c0ba809.jpg_720x720q80.jpg_.webp">
+                <h3>Girls Cute Pearl & Bowknot Design Top and Shorts 2-Piece Set</h3>
+                <p class="price"><span class="original-price">3000pkr</span><span class="discount-price">1700pkr</span></p>
+                <label for="size-kc8">Size:</label>
+    <select id="size-kc8">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div></div>
+           <div class="product-card" id="kc9">
+                <img src="https://img.drz.lazcdn.com/g/kf/S7166def9ebf144f2aef72962a88e3d0ce.jpg_400x400q75.avif">
+                <h3> girls dress, kids cotton stitched frock dress, cotton summer wear</h3>
+                <p class="price"><span class="original-price">2000pkr</span><span class="discount-price">1500pkr</span></p>
+               <label for="size-kc9">Size:</label>
+    <select id="size-kc9">
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option> 
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc10">
+                <img src="https://img.drz.lazcdn.com/g/kf/Sbc347a0a9de4429d9f30b6137b25f07ak.jpg_400x400q75.avif">
+                <h3> pack of two Kids Summer Soft Cotton Short Sleeve Casual Party Wear Dresses</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">650pkr</span></p>
+                <label for="size-kc10">Size:</label>
+    <select id="size-kc10">
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option>
+<option value="7-8Y">7 - 8 Years</option>
+<option value="8-9Y">8 - 9 Years</option>
+<option value="9-10Y">9 - 10 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc11">
+                <img src="https://img.drz.lazcdn.com/g/kf/S68d6b3c266a345b4af273034a439e3bbv.jpg_400x400q75.avif">
+                <h3>Pack of 2 Baby Girl Frock & Pajama Set | 100% Hosiery Soft Cotton Summer Outfit </h3>
+                <p class="price"><span class="original-price">2500pkr</span><span class="discount-price">1200pkr</span></p>
+                <label for="size-kc11">Size:</label>
+    <select id="size-kc11">
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option> multicolor
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc12">
+                <img src="https://img.drz.lazcdn.com/g/kf/S220e764e550e44deace6c44fc4d9df43Q.jpg_400x400q75.avif">
+                <h3>T-shirt And Shorts Pants For Kids Baby Girls</h3>
+                <p class="price"><span class="original-price">1000pkr</span><span class="discount-price">600pkr</span></p>
+                <label for="size-kc12">Size:</label>
+    <select id="size-kc12">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+<option value="4-5Y">4 - 5 Years</option>
+<option value="5-6Y">5 - 6 Years</option>
+<option value="6-7Y">6 - 7 Years</option>
+<option value="7-8Y">7 - 8 Years</option>
+<option value="8-9Y">8 - 9 Years</option>
+<option value="9-10Y">9 - 10 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc13">
+                <img src="https://img.drz.lazcdn.com/g/kf/S0203582adda0412c9e165105c9ac5dd2f.jpg_400x400q75.avif">
+                <h3>Cotton Casual Shirts And Jeans shorts pants For Kids Baby Boys</h3>
+                <p class="price"><span class="original-price">2000pkr</span><span class="discount-price">1500pkr</span></p>
+                <label for="size-kc13">Size:</label>
+    <select id="size-kc13">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc14">
+                <img src="https://img.drz.lazcdn.com/g/kf/S232beb572a7044cfb9d5ff7a2b212bdcu.jpg_400x400q75.avif">
+                <h3>summer Collection Cotton Casual Shirt And Short For Kids Baby Boys</h3>
+                <p class="price"><span class="original-price">2000pkr</span><span class="discount-price">1500pkr</span></p>
+                <label for="size-kc14">Size:</label>
+    <select id="size-kc14">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+</div>
+           <div class="product-card" id="kc15">
+                <img src="https://img.drz.lazcdn.com/g/kf/S9e1146a31c1b4f4bb521a819e83a4f14d.jpg_400x400q75.avif">
+                <h3>Tracksuit Imported Comfy Winter Warm Top Clothes Set Dresses Outfit Suit For Unisex</h3>
+                <p class="price"><span class="original-price">1200pkr</span><span class="discount-price">800pkr</span></p>
+                <label for="size-kc15">Size:</label>
+    <select id="size-kc15">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+<option value="1-2Y">1 - 2 Years</option>
+<option value="2-3Y">2 - 3 Years</option>
+<option value="3-4Y">3 - 4 Years</option>
+ </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+<!-- Add 3 more products similarly with unique IDs kc3, kc4, kc5 -->
+        </div>
+    </section>
+
+    <!-- Kids Shoes Section -->
+    <section id="kids-shoes">
+        <h2>Kids Shoes</h2>
+        <div class="products">
+            <div class="product-card" id="ks1">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/0e108226687ab250208b4b003e614a61.jpg_400x400q75.avif">
+                <h3>First Walkers Infant Toddler Anti-slip Crib Baby Shoes</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">1000pkr</span></p>
+                 <label for="size-ks1">Size:</label>
+    <select id="size-ks1">
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+ </select>
+ <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>">
+            <div class="product-card" id="ks2">
+                <img src="https://img.drz.lazcdn.com/g/kf/S9f1e319004644018b4b03670f7fa3260I.jpg_400x400q75.avif">
+                <h3>Loofers shoes For new born baby /new born baby loofers shoes/kids shoes</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">1000pkr</span></p>
+              <label for="size-ks2">Size:</label>
+    <select id="size-ks2">  
+<option value="1 year">1 year</option>
+<option value="2 year">2 year</option>
+<option value="3 year">3 year</option>
+ </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks3">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/8e029edbd54d9415b4b3999b960d2a4b.png_400x400q75.avif">
+                <h3>Baby Shoes - Black Dots Shoes for Babies and Toddlers - Perfect for Newborn Gift!</h3>
+                <p class="price"><span class="original-price">2000pkr</span><span class="discount-price">1600pkr</span></p>
+                <label for="size-ks3">Size:</label>
+    <select id="size-ks3">  
+<option value="6-12M">6-12 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks4">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/881b2e6a19a4f7958483c98ea4f922fa.jpg_400x400q75.avif">
+                <h3>Loofers shoes For Baby Boy random colour</h3>
+                <p class="price"><span class="original-price">800pkr</span><span class="discount-price">550pkr</span></p>
+                <label for="size-ks4">Size:</label>
+    <select id="size-ks4">  
+<option value="0-6M">0-6 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks5">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/02ecc27581b16261521bf6d0d92a62e4.jpg_400x400q75.avif">
+                <h3>kids Shoes</h3>
+                <p class="price"><span class="original-price">1800pkr</span><span class="discount-price">1250pkr</span></p>
+                <label for="size-ks5">Size:</label>
+    <select id="size-ks5">  
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks6">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/53e08fae8baadd4358ff11b63e3250a6.png_400x400q75.avif">
+                <h3>CUTE BABY WOOLEN CROCHET HANDMADE BABY GIRL SHEOS/ FOR ALL SEASONS CROCHET ACCESSORIES</h3>
+                <p class="price"><span class="original-price">900pkr</span><span class="discount-price">600pkr</span></p>
+                <label for="size-ks6">Size:</label>
+    <select id="size-ks6">  
+<option value="6-12M">6 - 12 Months</option>
+<option value="12-18M">12 - 18 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks7">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/c47f546222a27a98aac4c2f064792c22.jpg_400x400q75.avif">
+                <h3>CUTE BABY WOOLEN CROCHET HANDMADE BABY GIRL SHEOS/ FOR ALL SEASONS CROCHET ACCESSORIES</h3>
+                <p class="price"><span class="original-price">900pkr</span><span class="discount-price">600pkr</span></p>
+                <label for="size-ks7">Size:</label>
+    <select id="size-ks7">  
+<option value="6-12M">6 - 12 Months</option>
+<option value="12-18M">12 - 18 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks8">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/d7d05465a1e7af0fa2f0309b1020012a.png_400x400q75.avif">
+                <h3>CUTE BABY WOOLEN CROCHET HANDMADE BABY GIRL SHEOS/ FOR ALL SEASONS CROCHET ACCESSORIES</h3>
+                <p class="price"><span class="original-price">950pkr</span><span class="discount-price">600pkr</span></p>
+                <label for="size-ks8">Size:</label>
+    <select id="size-ks8">  
+<option value="0-3M">0 - 3 Months</option>
+<option value="3-6M">3 - 6 Months</option>
+<option value="6-9M">6 - 9 Months</option>
+<option value="9-12M">9 - 12 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="ks9">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/aa81156fe25b536fcda0ba94a2e37efe.png_400x400q75.avif">
+                <h3>Blue Sandals for Babies and Toddlers - Perfect for Newborn Gift!</h3>
+                <p class="price"><span class="original-price">1800pkr</span><span class="discount-price">1550pkr</span></p>
+                <label for="size-ks9">Size:</label>
+    <select id="size-ks9">  
+<option value="6-12M">6 - 12 Months</option>
+</select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<!-- Add 4 more shoes with unique IDs ks2 to ks5 -->
+        </div>
+    </section>
+
+    <!-- Toys Section -->
+    <section id="kids-toys">
+        <h2>Kids Toys</h2>
+        <div class="products">
+            <div class="product-card" id="kt1">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/b40fdbbe6970ce5dc3e79aaff5792138.jpg_400x400q75.avif">
+                <h3>Ring Toss Game For Kids With 18 inch Stand Floatable Rings Multicolored Durable Plastic Rings Competitive Tossing Game for Kids and Adults</h3>
+                <p>Price: 400 PKR</p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <!-- Add 4 more toys kt2 to kt5 -->
+        </div>
+    </section>
+
+    <!-- Ladies and gents Clothing Section -->
+    <section id="ladies and gents-clothes">
+        <h2>Ladies and gents Clothing</h2>
+        <div class="products">
+            <div class="product-card" id="lc1">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/0bb95ead042091a37d2f45f6e3b8d26d.jpg_400x400q75.avif">
+                <h3>Maroon Trendy Printed Tracksuit For Men and Boys - Soft and Comfortable Fabric T Shirt and Trouser Printed Tracksuit</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">1100pkr</span></p>
+                <label for="size-lc1">Size:</label>
+    <select id="size-lc1">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+               <div class="product-card" id="lc2">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/f4337311eaa48f2e97a90e2ba005982e.jpg_400x400q75.avif">
+                <h3>Summer Tracksuit For Girls And Women Stylish Printed Round Neck Half Sleeves T Shirts Top Quality Trouser By OUTFITTERS</h3>
+                <p class="price"><span class="original-price">1600pkr</span><span class="discount-price">1400pkr</span></p>
+                <label for="size-lc2">Size:</label>
+    <select id="size-lc2">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+   <div class="product-card" id="lc3">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/441b4d41599efa612e51260c88fd83d7.jpg_400x400q75.avif">
+                <h3>Comfortable Nightwear / Cozy Night Suit / Stylish Night Suit Barbie and cati print for girls and women</h3>
+                <p class="price"><span class="original-price">1600pkr</span><span class="discount-price">1200pkr</span></p>
+                <label for="size-lc3">Size:</label>
+    <select id="size-lc3">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="lc4">
+                <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9zdGF0aWMtMDEuZGFyYXoucGsvcC9lMTkwMzYxZjNkMWMxZTY1NmY5MWVmYmQ2MDJjYTM5Yy5wbmc=_2200x2200q75.png_.webp">
+                <h3>you make me smile DESIGN TAG PRINT Tracksuit Tee-shirt with trousers New Design Round Neck Half Sleeves T Shirts Top Quality Gym wear/Casual and comfortable Pair Shirt and Trouser</h3>
+                <p class="price"><span class="original-price">1600pkr</span><span class="discount-price">1200pkr</span></p>
+                <label for="size-lc4">Size:</label>
+    <select id="size-lc4">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+ <div class="product-card" id="lc5">
+                <img src="https://img.lazcdn.com/3rd/q/aHR0cHM6Ly9way1saXZlLTIxLnNsYXRpYy5uZXQva2YvUzBhYmZhOTJmMWFmZjQzNTJiNjFmZjVkNThjNmM0YzRjOC5qcGc=_2200x2200q75.png_.webp">
+                <h3>PREMIUM QUALITY TRENDY DRIFIT SUMMER TRACKSUIT FOR MEN</h3>
+                <p class="price"><span class="original-price">1600pkr</span><span class="discount-price">1200pkr</span></p>
+                <label for="size-lc5">Size:</label>
+    <select id="size-lc5">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="lc6">
+                <img src="https://img.drz.lazcdn.com/g/kf/Sf9b45cb54d1342ac9fd5378fec1dba41s.jpg_400x400q75.avif">
+                <h3>Party Tracksuit T shirt and trouser for men / premium full sleeve tracksuit for men</h3>
+                <p class="price"><span class="original-price">1800pkr</span><span class="discount-price">1500pkr</span></p>
+                <label for="size-lc6">Size:</label>
+    <select id="size-lc6">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="lc7">
+                <img src="https://img.drz.lazcdn.com/g/kf/S6875199709564aa6868696f5e2c57901p.jpg_400x400q75.avif">
+                <h3>NEW ARRIVALS 2 PC SPORT'S WEAR PRINTED SUMMER TRACKSUIT FOR MEN _</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">1200pkr</span></p>
+                <label for="size-lc7">Size:</label>
+    <select id="size-lc7">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="lc8">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/d7c1ca62a8c7b4dfd426ef48ef583a4a.png_400x400q75.avif">
+                <h3>Night Suit for Girls & Women – Cotton Jersey Pajama Set – Handsome Bear Printed Summer Nightwear – Soft T-Shirt & Trouser Sleepwear</h3>
+                <p class="price"><span class="original-price">1500pkr</span><span class="discount-price">1200pkr</span></p>
+                <label for="size-lc8">Size:</label>
+    <select id="size-lc8">
+<option value="S">S</option>
+        <option value="M" selected>M</option>
+        <option value="L">L</option>
+option value="xL">xL</option>
+    </select>
+<div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<!-- Add 4 more products lc2-lc5 -->
+        </div>
+    </section>
+
+    <!-- Jewelry Section -->
+    <section id="jewelry">
+        <h2>Jewelry</h2>
+        <div class="products">
+            <div class="product-card" id="j1">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/63ccfb0787a1bb7346cec046cc3348d3.jpg_400x400q75.avif">
+                <h3>Pearl Necklace</h3>
+                <p class="price"><span class="original-price">1300pkr</span><span class="discount-price">1000pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" id="j2">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/84ccd157e1f781eb02809e1a79dade30.jpg_400x400q75.avif">
+                <h3>Gold Chain Korean Jewellery Stars Moon Heart Round Enamel Necklace Jewellery For Girls</h3>
+                <p class="price"><span class="original-price">600pkr</span><span class="discount-price">450pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" id="j3">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/05eaf6bebcb2b3ade2e9a9608ed861a9.jpg_400x400q75.avif">
+                <h3>Gold Chain Korean Jewellery Stars Moon Heart Round Enamel Necklace Jewellery For Girls</h3>
+                <p class="price"><span class="original-price">250pkr</span><span class="discount-price">150pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" id="j4">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/df8c64a293d3faa017a9af4b8cb562c8.jpg_400x400q75.avif">
+                <h3>New trandy Silver Magnetic Broken Couple Heart Necklace Locket - Heavy Metal Magnetic Heart Pendant Necklace Gift For Friends Couples</h3>
+                <p class="price"><span class="original-price">450pkr</span><span class="discount-price">300pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" id="j5">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/9658b3cd028147c0f129d3f21770e9af.jpg_400x400q75.avif">
+                <h3>Gold Chain With Beautiful Black Swan Duck Necklace Korean Jewellery For Women - Gold Chain Neck Statement Collar Chains Shining Female Jewellery For Girls</h3>
+                <p class="price"><span class="original-price">450pkr</span><span class="discount-price">300pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="products">
+            <div class="product-card" id="j6">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/42f4f587d1106fea338c31732932e53a.jpg_400x400q75.avif">
+                <h3>ECG Necklace Heartbeat Shaped Clavicle Chain Electrocardiogram Titanium Steel Heart Pulse Charm Pendant Women Vintage Fashion Jewelry</h3>
+       <p class="price"><span class="original-price">250pkr</span><span class="discount-price">120pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="products">
+            <div class="product-card" id="j7">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/13edd8829e3ca1cbea85a187bac3d651.png_400x400q75.avif">
+                <h3>ECG Necklace Heartbeat Shaped Clavicle Chain Electrocardiogram Titanium Steel Heart Pulse Charm Pendant Women Vintage Fashion Jewelry</h3>
+                <p class="price"><span class="original-price">650pkr</span><span class="discount-price">500pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="products">
+            <div class="product-card" id="j8">
+                <img src="https://img.drz.lazcdn.com/g/kf/S516619447d144de5978e2bc57a22acafB.jpg_400x400q75.avif">
+                <h3>Decent gajra And Charming locket Set Necklace With Earrings For Girls and Woman</h3>
+                <p class="price"><span class="original-price">650pkr</span><span class="discount-price">500pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="products">
+            <div class="product-card" id="j9">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/1f2c9c99aab78342742a0b0b79d8f9e5.jpg_400x400q75.avif">
+                <h3>Beautiful 2 layers butterfllies with high quality silver chain necklace for girls fashion events parties Alloy chain necklace</h3>
+                <p class="price"><span class="original-price">550pkr</span><span class="discount-price">400pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="products">
+            <div class="product-card" id="j10">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/71c129b4e86a4478bcddda6b8bf29adc.jpg_400x400q75.avif">
+                <h3>Open Bangle Bracelet Elegant Leaf for Women 3pcs-Set.</h3>
+                <p class="price"><span class="original-price">550pkr</span><span class="discount-price">400pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<!-- Add 4 more jewelry items j2-j5 -->
+        </div>
+    </section>
+
+    <!-- Bags Section -->
+    <section id="bags">
+        <h2>Bags</h2>
+        <div class="products">
+            <div class="product-card" id="b1">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/96809d1b6c07c591ac51030235f23d3b.jpg_400x400q75.avif">
+                <h3>LADIES HAND BAG New Stylish Design Hand Bag Shoulder Bag Cross Body Bags For Women & Girls, beautiful hand bag, ladies hand bag, for Fancy Gift</h3>
+                <p class="price"><span class="original-price">1720pkr</span><span class="discount-price">1100pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+            <div class="product-card" id="b2">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/99656b3c334e58e0e5315e15c60138b8.jpg_400x400q75.avif">
+                <h3>LADIES HAND BAG New Stylish Design Hand Bag Shoulder Bag Cross Body Bags For Women & Girls, beautiful hand bag</h3>
+                <p class="price"><span class="original-price">1720pkr</span><span class="discount-price">1000pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+ <div class="product-card" id="b3">
+                <img src="https://img.drz.lazcdn.com/collect/sg/p/4a36e4debba5ecfd80a2f137591e9052.jpg_400x400q75.avif">
+                <h3>Stylish & Trendy Hand Bag for Girls</h3>
+                <p class="price"><span class="original-price">1720pkr</span><span class="discount-price">1150pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="b4">
+                <img src="https://img.drz.lazcdn.com/g/kf/S105461c2a9f74cfcb89a8ea14bf94395z.jpg_400x400q75.avif">
+                <h3>Handmade Drop Shape Pearl Bag For Girls - Round Shaped Pearl Bag - Beaded Bag</h3>
+                <p class="price"><span class="original-price">1400pkr</span><span class="discount-price">1000pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<div class="product-card" id="b5">
+                <img src="https://img.drz.lazcdn.com/static/pk/p/363ab69e5cade1671584d1ca43dd1e06.jpg_400x400q75.avif">
+                <h3>Bag for Girls Hand Bag Imported Quality Western look Hand Bags for Girls Stylish New 2021, Shoulder Hand Bags for Women, Girls, Ladies Bags in Sale</h3>
+                <p class="price"><span class="original-price">1400pkr</span><span class="discount-price">1000pkr</span></p>
+                <div class="buttons">
+                    <button class="add-cart">Add to Cart</button>
+                    <button class="buy-now">Buy Now</button>
+                </div>
+            </div>
+<!-- Add 4 more bags b2-b5 -->
+        </div>
+<section id="checkout">
+<h2>Checkout</h2>
+
+<form>
+<label>Full Name:</label><br>
+<input type="text" name="name" placeholder="Enter your name" required><br><br>
+
+<label>Email:</label><br>
+<input type="email" name="email" placeholder="Enter your email" required><br><br>
+
+<label>Address:</label><br>
+<input type="text" name="address" placeholder="Enter your address" required><br><br>
+
+<label>Select Payment Method:</label><br>
+<select>
+<option>Online Payment (EasyPaisa / JazzCash)</option>
+</select><br><br>
+
+<label>Send Payment Screenshot:</label><br>
+<input type="file"><br><br>
+
+<p>Send Payment To: <b>0300-1234567</b></p>
+
+<button type="submit">Place Order</button>
+</form>
+</section>
+
+    <script>
+        // Slider Script
+        let slideIndex = 0;
+        const slides = document.getElementById('slides');
+        const totalSlides = slides.children.length;
+
+        function showSlide(index){
+            if(index >= totalSlides) slideIndex = 0;
+            else if(index < 0) slideIndex = totalSlides - 1;
+            else slideIndex = index;
+            slides.style.transform = 'translateX(' + (-slideIndex * 100) + '%)';
+        }
+
+        function nextSlide(){ showSlide(slideIndex + 1); }
+        function prevSlide(){ showSlide(slideIndex - 1); }
+
+        setInterval(nextSlide, 4000); // auto-slide every 4 sec
+
+        // Search Function
+        function searchProducts(){
+            const input = document.getElementById('searchBar').value.toLowerCase();
+            const products = document.getElementsByClassName('product-card');
+            for(let i=0; i<products.length; i++){
+                let title = products[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                products[i].style.display = title.includes(input) ? 'block' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>
